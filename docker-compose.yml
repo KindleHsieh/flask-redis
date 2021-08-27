@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+    flask:
+        build:
+            context: ./
+            dokcerfile: dokcerfile
+        image: kindle/flask-REDIS:latest
+        ports:
+            - "8000:5050"
+        environment:
+            - REDIS_HOST=redis-server
+            - REDIS_PASS=$(REDIS_PASSWORD)
+    
+    redis-server:
+        image: redis:latest
+        command: redis-server --requirepass $(REDIS_PASSWORD)
