@@ -1,0 +1,12 @@
+name: flask mix REDIS
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository Code...
+        uses: actions/checkout@v2
+      - name: docker image build...
+        run: docker build -t kindle/flask-redis:latest .
+      - name: list docker list...
+        run: docker image ls -a
