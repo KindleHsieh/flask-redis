@@ -10,13 +10,7 @@ jobs:
         run: docker build -t kindle/flask-redis:latest .
       - name: list docker list...
         run: docker image ls -a
-<<<<<<< HEAD
-<<<<<<< HEAD
       - name: dockerhub login
         run: docker login -u ${{secrets.DH_USERNAME}} -p ${{secrets.DH_PWD}}
       - name: push to docker Hub
         run: docker image push kindle/flask-redis:latest
-=======
->>>>>>> 1308551fd9dd95bc87621bf7b9585694c0fd4395
-=======
->>>>>>> refs/remotes/orgin/main
