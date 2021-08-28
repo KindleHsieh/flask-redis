@@ -7,10 +7,10 @@ jobs:
       - name: Check out repository Code...
         uses: actions/checkout@v2
       - name: docker image build...
-        run: docker build -t kindle/flask-redis:latest .
+        run: docker build -t kindle/flask-redis:0.0.0 .
       - name: list docker list...
         run: docker image ls -a
       - name: dockerhub login
         run: docker login -u ${{secrets.DH_USERNAME}} -p ${{secrets.DH_PWD}}
       - name: push to docker Hub
-        run: docker image push kindle/flask-redis:latest
+        run: docker image push kindle/flask-redis:0.0.0
