@@ -1,16 +1,25 @@
-name: flask mix REDIS
+name: docker image build multi-platform and push
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Docker-Build-Push:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository Code...
+      - 
+        name: Checkout Repository code
         uses: actions/checkout@v2
-      - name: docker image build...
-        run: docker build -t kindlehsieh/flask-redis:0.0.0 .
-      - name: list docker list...
-        run: docker image ls -a
-      - name: dockerhub login
-        run: docker login -u ${{secrets.DH_USERNAME}} -p ${{secrets.DH_PWD}}
-      - name: push to docker Hub
-        run: docker image push kindlehsieh/flask-redis:0.0.0
+      - 
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - 
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - 
+        name: Available Platforms
+        run: echo ${{steps.buildx.outputs.platforms}}
+      - 
+        name: buildx image
+        run: |
+          docker login -u ${{secrets.DH_USERNAME}} -p ${{secrets.DH_PWD}}
+          docker buildx ls
+          docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t kindlehsieh/flask-redis:latest .

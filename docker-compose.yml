@@ -5,7 +5,7 @@ services:
         build:
             context: ./
             dokcerfile: dokcerfile
-        image: kindlehsieh/flask-REDIS:0.0.0
+        image: kindlehsieh/flask-REDIS:latest
         ports:
             - "8000:5050"
         environment:
